@@ -34,6 +34,44 @@ double tangent(double degrees){
 double logarithm(double a){
     return log10(a);
 }
+double factorial(int n){
+    double result = 1;
+
+    for(int i = 1; i <= n; i++ ){
+        result = result * i;
+    }
+    return result;
+}
+double naturalLog(double a){
+    return log(a);
+}
+double inverseSine(double a) {
+    double radians = asin(a);
+    double degrees = radians * 180.0 / 3.141592653589793;
+    return degrees;
+}
+double inverseTangent(double a) {
+    double radians = atan(a);
+    double degrees = radians * 180.0 / 3.141592653589793;
+    return degrees;
+}
+double inverseCosine(double a) {
+    double radians = acos(a);
+    double degrees = radians * 180.0 / 3.141592653589793;
+    return degrees;
+}
+double absoluteValue(double a) {
+    return fabs(a);
+}
+double roundNumber(double a) {
+    return round(a);
+}
+double ceilingNumber(double a) {
+    return ceil(a);
+}
+double floorNumber(double a) {
+    return floor(a);
+}
 
 int main()
 {
@@ -60,7 +98,8 @@ int main()
             cin.ignore(numeric_limits<streamsize>::max(),'\n');
             continue;
         }
-        cout <<"Enter the opertaion you want to work with(+,-,/,*,^-power,s-square root, n-sine, c-cosine, t- tan, l-log): ";
+        cout <<"Enter the opertaion you want to work with(+,-,/,*,^-power,s-square root, i- inverse sine, a- inverse tan, o- inverse cosine"
+                "e- natuarl log, n-sine, c-cosine, t- tan, l-log, ! - factorial): ";
         cin>>operation;
 
         switch(operation){
@@ -117,6 +156,61 @@ int main()
             answer = logarithm(num1);
             cout<<"answer: "<<answer<<endl;
             }
+        case '!':
+            if(num1 < 0|| num1 != static_cast<int>(num1)){      //num1 != static_cast<int>(num1)----checks if no is a fraction
+                cout<<"Factorial requires a non negative whole number."<<endl;
+            }else{
+                answer = factorial(static_cast<int>(num1));
+                cout<<"Answer:"<<answer<<endl;
+            }
+            break;
+
+        case 'e':
+            if (num1 <= 0) {
+                cout << "Natural logarithm requires a positive number." << endl;
+            } else {
+                answer = naturalLog(num1);
+                cout << "Answer: " << answer << endl;
+            }
+            break;
+        case 'i':
+            if (num1 < -1 || num1 > 1) {
+                cout << "Inverse sine requires a value between -1 and 1." << endl;
+            } else {
+                answer = inverseSine(num1);
+                cout << "Answer: " << answer << " degrees" << endl;
+            }
+            break;
+        case 'a':
+            answer = inverseTangent(num1);
+            cout << "Answer: " << answer << " degrees" << endl;
+            break;
+        case 'o':
+            if (num1 < -1 || num1 > 1) {
+                cout << "Inverse cosine requires a value between -1 and 1." << endl;
+            } else {
+                answer = inverseCosine(num1);
+                cout << "Answer: " << answer << " degrees" << endl;
+            }
+            break;
+        case 'v':
+            answer = absoluteValue(num1);
+            cout << "Answer: " << answer << endl;
+            break;
+        case 'r':
+            answer = roundNumber(num1);
+            cout << "Answer: " << answer << endl;
+            break;
+        case 'u':
+            answer = ceilingNumber(num1);
+            cout << "Answer: " << answer << endl;
+            break;
+        case 'f':
+            answer = floorNumber(num1);
+            cout << "Answer: " << answer << endl;
+            break;
+
+
         default:
             cout<< "INVALID OPERATION!!!!";
 
